@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Configuració de PHPUnit per al projecte School Management + Library.
+
+    Testsuite "domain": tests purs del domini (sense mocks, sense BD)
+        - tests del professor (Book, User, Loan)
+        - tests nous de l'escola (Student, Course, Subject, Teacher, Enrollment, Assignment)
+
+    Testsuite "application": tests dels casos d'ús (amb mocks)
+        - tests del professor (BorrowBook, ReturnBook, RegisterUser)
+        - tests nous de l'escola (EnrollStudent [UC5], AssignTeacherToSubject [UC6])
+
+    Execució:
+        vendor/bin/phpunit --testsuite=domain       ← Tots els tests de domini
+        vendor/bin/phpunit --testsuite=application  ← Tots els tests d'aplicació
+        vendor/bin/phpunit                          ← Tots els tests
+-->
+<phpunit
+    bootstrap="vendor/autoload.php"
+    colors="true"
+>
+    <testsuites>
+        <!-- Tests de domini: purs, sense mocks, sense BD -->
+        <testsuite name="domain">
+            <directory>tests/Domain</directory>
+        </testsuite>
+
+        <!-- Tests d'aplicació: amb mocks per als repositoris -->
+        <testsuite name="application">
+            <directory>tests/Application</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>

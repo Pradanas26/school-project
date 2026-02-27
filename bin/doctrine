@@ -1,0 +1,14 @@
+#!/usr/bin/env php
+<?php
+// bin/doctrine
+use Doctrine\ORM\Tools\Console\ConsoleRunner;
+use Doctrine\ORM\Tools\Console\EntityManagerProvider\SingleManagerProvider;
+require __DIR__.'/../vendor/autoload.php';
+use Dotenv\Dotenv;
+    $dotenv = Dotenv::createImmutable(__DIR__.'/../');
+    $dotenv->load();
+$entityManager=require __DIR__ . '/../src/Infrastructure/Persistence/Doctrine/bootstrap.php';
+
+ConsoleRunner::run(
+    new SingleManagerProvider($entityManager)
+);
